@@ -3,13 +3,13 @@
 	"id": "replace-text",
 	"version": "${version}",
 	"name": "Replace Text",
-	"description": "This mod automatically filters chat messages sent and replaces set phrases. Simmilar to IPhone's Replace Text feature",
+	"description": "This mod allows you to replace any text sent by you in chat. Prevents typos and profanity if setup correctly",
 	"authors": [
 		"Agent Kostička"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://modrinth.com/mod/replacetext",
+		"sources": "https://github.com/TheBosoYolo/ReplaceText"
 	},
 	"license": "ARR",
 	"icon": "assets/replace-text/icon.png",
