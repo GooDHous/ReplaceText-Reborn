@@ -1,0 +1,37 @@
+{
+	"schemaVersion": 1,
+	"id": "replace-text",
+	"version": "${version}",
+	"name": "Replace Text",
+	"description": "This mod automatically filters chat messages sent and replaces set phrases. Simmilar to IPhone's Replace Text feature",
+	"authors": [
+		"Agent Kostička"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "ARR",
+	"icon": "assets/replace-text/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"main": [
+          "com.agentkosticka.replacetext.ReplaceTextMod"
+		],
+		"client": [
+			"com.agentkosticka.replacetext.ReplaceTextClient"
+		],
+		"fabric-datagen": [
+			"com.agentkosticka.replacetext.ReplaceTextDataGenerator"
+		]
+	},
+	"mixins": [
+		"replace-text.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.14.22",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	}
+}
