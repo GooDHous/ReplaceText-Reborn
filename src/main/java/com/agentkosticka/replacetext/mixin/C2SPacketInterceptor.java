@@ -36,9 +36,9 @@ public abstract class C2SPacketInterceptor {
             if (Variables.listeningToReplace && Variables.waitingWord != ""){
                 Variables.listOfWordsToReplace.add(new StringPair(Variables.waitingWord, ((ChatMessageC2SPacket) packet).chatMessage()));
                 Methods.SendMessage("Success! \""+Variables.waitingWord+"\" will be now replaced with \""+((ChatMessageC2SPacket) packet).chatMessage()+"\"");
+                DataManager.saveData(Variables.listOfWordsToReplace);
                 Variables.waitingWord = "";
                 Variables.listeningToReplace = false;
-                DataManager.saveData(Variables.listOfWordsToReplace);
                 callbackInfo.cancel();
                 return;
             }
