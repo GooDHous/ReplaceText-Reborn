@@ -3,12 +3,12 @@
 	"package": "com.agentkosticka.replacetext.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
-		"C2SPacketInterceptor"
+		"MessageCatchNSend"
 	],
 	"injectors": {
 		"defaultRequire": 1
 	},
 	"client": [
-		"C2SPacketInterceptor"
+		"MessageCatchNSend"
 	]
 }
