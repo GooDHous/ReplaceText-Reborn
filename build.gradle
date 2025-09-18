@@ -104,7 +104,3 @@ publishing {
 		// retrieving dependencies.
 	}
 }
-
-task buildAllVersions {
-    dependsOn 'build'
-}
