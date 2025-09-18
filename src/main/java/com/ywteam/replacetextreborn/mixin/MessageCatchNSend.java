@@ -28,10 +28,13 @@ public abstract class MessageCatchNSend {
             return;
         }
 
+
         if (Variables.listeningToReplace && !Variables.waitingWord.isEmpty()) {
-            if (Variables.waitingWord.equalsIgnoreCase(chatText) || chatText.equalsIgnoreCase(Variables.waitingWord)) {
-                Methods.SendMessage("§4Error! Your words \"" + Variables.waitingWord + "\" and \"" + chatText + "\" can't contain each other");
+        
+            if (Variables.waitingWord.equalsIgnoreCase(chatText)) {
+                Methods.SendMessage("§4Error! Your words \"" + Variables.waitingWord + "\" and \"" + chatText + "\" can't be the same");
             } else {
+            
                 if (willCauseInfiniteLoop(Variables.waitingWord, chatText)) {
                     Methods.SendMessage("§4Error! This replacement would cause an infinite loop");
                     Methods.SendMessage("§7The replacement contains the original word");
@@ -41,7 +44,7 @@ public abstract class MessageCatchNSend {
                     DataManager.saveData(Variables.listOfWordsToReplace);
                 }
             }
-
+        
             Variables.waitingWord = "";
             Variables.listeningToReplace = false;
             chatField.setText("");

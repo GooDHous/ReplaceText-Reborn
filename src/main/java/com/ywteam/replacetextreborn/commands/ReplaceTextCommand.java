@@ -103,14 +103,13 @@ public class ReplaceTextCommand {
             Methods.SendMessage("§4Error: Word cannot be empty");
             return Command.SINGLE_SUCCESS;
         }
-        
         for (StringPair pair : Variables.listOfWordsToReplace) {
-            if (pair.first.equalsIgnoreCase(phrase)) {
-                Methods.SendMessage("§4Error: Word \"" + phrase + "\" is already being replaced");
+            if (pair.first.equals(phrase)) { 
+                Methods.SendMessage("§4Error: Word \"" + phrase + "\" is already being replaced with \"" + pair.second + "\"");
                 return Command.SINGLE_SUCCESS;
             }
         }
-        
+
         Variables.waitingWord = phrase;
         Variables.listeningToReplace = true;
         Methods.SendMessage("Now type what to replace \"" + phrase + "\" with");
