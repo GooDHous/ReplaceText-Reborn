@@ -1,37 +1,40 @@
 {
-	"schemaVersion": 1,
-	"id": "replace-text",
-	"version": "${version}",
-	"name": "Replace Text",
-	"description": "This mod allows you to replace any text sent by you in chat. Prevents typos and profanity if setup correctly",
-	"authors": [
-		"Agent Kostička"
-	],
-	"contact": {
-		"homepage": "https://modrinth.com/mod/replacetext",
-		"sources": "https://github.com/TheBosoYolo/ReplaceText"
-	},
-	"license": "ARR",
-	"icon": "assets/replace-text/icon.png",
-	"environment": "client",
-	"entrypoints": {
-		"main": [
-          "com.agentkosticka.replacetext.ReplaceTextMod"
-		],
-		"client": [
-			"com.agentkosticka.replacetext.ReplaceTextClient"
-		],
-		"fabric-datagen": [
-			"com.agentkosticka.replacetext.ReplaceTextDataGenerator"
-		]
-	},
-	"mixins": [
-		"replace-text.mixins.json"
-	],
-	"depends": {
-		"fabricloader": ">=0.14.22",
-		"minecraft": "~1.20.1",
-		"java": ">=17",
-		"fabric-api": "*"
-	}
+  "schemaVersion": 1,
+  "id": "replacetextreborn",
+  "version": "0.1",
+  "name": "Replace Text Reborn",
+  "description": "Text replacement mod for Minecraft with custom patterns",
+  "authors": ["YWTeam", "GooDHous"],
+  "contact": {
+    "homepage": "https://github.com/GooDHous/ReplaceText-Reborn",
+    "sources": "https://github.com/GooDHous/ReplaceText-Reborn"
+  },
+  "license": "MIT",
+  "icon": "assets/replace-text/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.ywteam.replacetextreborn.ReplaceTextReborn"
+    ]
+  },
+  "mixins": [
+    "replacetextreborn.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "fabric-api": ">=0.100.0",
+    "minecraft": ">=1.21 <=1.21.8",
+    "java": ">=21"
+  },
+  "suggests": {
+    "modmenu": ">=7.0.0"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/PAm52zgFAF",
+        "modmenu.website": "https://github.com/GooDHous/ReplaceText-Reborn"
+      }
+    }
+  }
 }
