@@ -9,14 +9,13 @@ import com.ywteam.replacetextreborn.shared.Methods;
 import com.ywteam.replacetextreborn.shared.Variables;
 import com.ywteam.replacetextreborn.stringpair.StringPair;
 
+import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.argument;
+import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.literal;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 
-
-import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.*;
-
 public class ReplaceTextCommand {
-    private static final String MOD_VERSION = "0.1";
-    private static final String MOD_AUTHOR = "Weh";
+    private static final String MOD_VERSION = "1.21+_0.1.3";
+    private static final String MOD_AUTHOR = "Miku";
     private static final String MOD_GITHUB = "https://github.com/GooDHous/ReplaceText-Reborn";
     
     public static void register(CommandDispatcher<FabricClientCommandSource> dispatcher) {
