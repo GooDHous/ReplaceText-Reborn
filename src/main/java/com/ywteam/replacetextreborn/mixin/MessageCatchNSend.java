@@ -24,17 +24,24 @@ public abstract class MessageCatchNSend {
 
     @Inject(at = @At("HEAD"), cancellable = true, method = "sendMessage")
     private void onSendMessage(String chatText, boolean addToHistory, CallbackInfo ci) {
+
         if (Variables.messBypass.contains(chatText)) {
             return;
         }
 
-
         if (Variables.listeningToReplace && !Variables.waitingWord.isEmpty()) {
-        
+            if (isReplaceCommandProtected(Variables.waitingWord, chatText)) {
+                Methods.SendMessage("§4Error! Cannot add replacements that affect the '/replace' command");
+                Variables.waitingWord = "";
+                Variables.listeningToReplace = false;
+                chatField.setText("");
+                ci.cancel();
+                return;
+            }
+            
             if (Variables.waitingWord.equalsIgnoreCase(chatText)) {
                 Methods.SendMessage("§4Error! Your words \"" + Variables.waitingWord + "\" and \"" + chatText + "\" can't be the same");
             } else {
-            
                 if (willCauseInfiniteLoop(Variables.waitingWord, chatText)) {
                     Methods.SendMessage("§4Error! This replacement would cause an infinite loop");
                     Methods.SendMessage("§7The replacement contains the original word");
@@ -55,8 +62,18 @@ public abstract class MessageCatchNSend {
         String originalText = chatText;
         String modifiedText = chatText;
         
+        boolean isCommand = chatText.startsWith("/");
+        
         for (StringPair pair : Variables.listOfWordsToReplace) {
-            modifiedText = replaceIgnoreCaseSafely(modifiedText, pair.first, pair.second);
+            if (isCommand) {
+                if (pair.first.startsWith("/")) {
+                    modifiedText = replaceIgnoreCaseSafely(modifiedText, pair.first, pair.second);
+                }
+            } else {
+                if (!pair.first.startsWith("/")) {
+                    modifiedText = replaceIgnoreCaseSafely(modifiedText, pair.first, pair.second);
+                }
+            }
             
             if (modifiedText.length() > 1000) {
                 Methods.SendMessage("§4Error: Replacement would make message too long");
@@ -64,12 +81,38 @@ public abstract class MessageCatchNSend {
             }
         }
         
-        if (!originalText.equals(modifiedText) && !modifiedText.contains("/replace")) {
+
+        if (!originalText.equals(modifiedText)) {
             sendMessage(modifiedText, addToHistory);
             Variables.messBypass.add(modifiedText);
             chatField.setText("");
             ci.cancel();
         }
+    }
+    
+
+    private boolean isReplaceCommandProtected(String original, String replacement) {
+        String replaceCommand = "/replace";
+        
+        if (original.toLowerCase().contains(replaceCommand)) {
+            return true;
+        }
+        
+
+        if (original.startsWith("/") && replaceCommand.startsWith(original.toLowerCase())) {
+            return true;
+        }
+        
+        if (replacement.contains(replaceCommand)) {
+            return true;
+        }
+        
+        if (original.startsWith("/") && replacement.startsWith("/") && 
+            replaceCommand.startsWith(replacement.toLowerCase())) {
+            return true;
+        }
+        
+        return false;
     }
     
     private boolean willCauseInfiniteLoop(String original, String replacement) {
@@ -83,7 +126,6 @@ public abstract class MessageCatchNSend {
             return text;
         }
         
-
         if (!containsIgnoreCase(text, target)) {
             return text;
         }
@@ -94,19 +136,17 @@ public abstract class MessageCatchNSend {
         int textLength = text.length();
         int targetLength = target.length();
         int lastIndex = 0;
-        int iterationLimit = 30; 
+        int iterationLimit = 30;
         
         int index = lowerText.indexOf(lowerTarget);
         while (index >= 0 && iterationLimit > 0) {
             result.append(text, lastIndex, index);
             result.append(replacement);
-            
             lastIndex = index + targetLength;
             index = lowerText.indexOf(lowerTarget, lastIndex);
             iterationLimit--;
         }
         
-
         if (lastIndex < textLength) {
             result.append(text, lastIndex, textLength);
         }
@@ -114,7 +154,6 @@ public abstract class MessageCatchNSend {
         return result.toString();
     }
     
-
     private boolean containsIgnoreCase(String text, String target) {
         if (text == null || target == null) return false;
         return text.toLowerCase().contains(target.toLowerCase());

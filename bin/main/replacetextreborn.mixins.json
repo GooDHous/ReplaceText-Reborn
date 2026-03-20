@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.ywteam.replacetextreborn.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "MessageCatchNSend"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -14,7 +14,7 @@ import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.lit
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 
 public class ReplaceTextCommand {
-    private static final String MOD_VERSION = "1.21+_0.1.3";
+    private static final String MOD_VERSION = "1.21+_0.1.4";
     private static final String MOD_AUTHOR = "Miku";
     private static final String MOD_GITHUB = "https://github.com/GooDHous/ReplaceText-Reborn";
     
